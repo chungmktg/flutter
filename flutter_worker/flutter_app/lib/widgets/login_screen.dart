@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/User.dart';
 import 'package:flutter_app/presenter/login.dart';
 import 'package:flutter_app/widgets/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'over_view/overview_worker_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -14,12 +17,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final myEmail = TextEditingController();
   final myPassword = TextEditingController();
 
-
   @override
   void initState() {
     super.initState();
   }
-
 
   @override
   void dispose() {
@@ -44,9 +45,9 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 controller: myEmail,
                 decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey, width: 1.0),
-                ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                    ),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey, width: 1.0)),
                     hintText: 'Email'),
@@ -76,9 +77,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   textColor: Colors.white,
                   color: Colors.blueGrey,
                   onPressed: () {
-                    postLoginRequest().then((value){
-                      if(value.statusCode == 200){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                    postLoginRequest().then((value) {
+                      if (value.statusCode == 200) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
                       }
                     });
                   },

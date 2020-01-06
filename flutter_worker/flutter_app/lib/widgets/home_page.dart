@@ -8,7 +8,8 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin<HomePage> {
+class _HomePageState extends State<HomePage>
+    with TickerProviderStateMixin<HomePage> {
   int _currentIndex = 0;
 
   @override
@@ -32,10 +33,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin<HomeP
         },
         items: allDestinations.map((Destination destination) {
           return BottomNavigationBarItem(
-            icon: Icon(destination.icon),
-            backgroundColor: destination.color,
-            title: Text(destination.title)
-          );
+              icon: Icon(destination.icon),
+              backgroundColor: destination.color,
+              title: Text(destination.title));
         }).toList(),
       ),
     );
