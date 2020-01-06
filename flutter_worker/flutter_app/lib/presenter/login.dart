@@ -3,28 +3,11 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_app/models/User.dart';
+import 'package:flutter_app/models/UserProfile.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../const.dart';
-
-//   String url = SERVER_URL_AUTH_WORKER+'/api/login';
-//   Map map = {
-//     'email': 'mobileteam@gmail.com',
-//     'password': 'A1234567'
-//   };
-
-// Future<String> apiLoginRequest(String url, Map jsonMap) async {
-//   HttpClient httpClient = new HttpClient();
-//   HttpClientRequest request = await httpClient.postUrl(Uri.parse(url));
-//   request.headers.set('content-type', 'application/json');
-//   request.add(utf8.encode(json.encode(jsonMap)));
-//   HttpClientResponse response = await request.close();
-//   // todo - you should check the response.statusCode
-//   String reply = await response.transform(utf8.decoder).join();
-//   httpClient.close();
-//   return reply;
-// }
 
 Future<http.Response> postLoginRequest() async {
   var url = SERVER_URL_AUTH_WORKER + '/api/login';
@@ -40,6 +23,26 @@ Future<http.Response> postLoginRequest() async {
   var user = User.fromJson(userToken);
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString(TOKEN, user.access_token);
-  log('andrew, ${prefs.getString(TOKEN)}');
+
+  return response;
+}
+
+Future<http.Response> getUserProfile() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String token = await prefs.getString(TOKEN) ?? "";
+
+  log('andrew up, $token');
+  final http.Response response =
+      await http.get(SERVER_URL_AUTH_WORKER + '/api/user', headers: {
+    "Content-Type": "application/json",
+    HttpHeaders.authorizationHeader: "Bearer " + token
+  });
+
+  log('andrew, ${response.body}');
+
+  final responseJson = json.decode(response.body);
+  var userProfile = UserProfile.fromJson(responseJson);
+  await prefs.setInt(USER_ID, userProfile.id);
+
   return response;
 }

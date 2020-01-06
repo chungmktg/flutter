@@ -7,7 +7,6 @@ import 'package:flutter_app/presenter/login.dart';
 import 'package:flutter_app/widgets/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -79,10 +78,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     postLoginRequest().then((value) {
                       if (value.statusCode == 200) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePage()));
+                        getUserProfile().then((response) {
+                          if (response.statusCode == 200) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          }
+                        });
                       }
                     });
                   },
