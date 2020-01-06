@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/presenter/login.dart';
+import 'package:flutter_app/widgets/home_page.dart';
 
 import 'over_view/overview_worker_screen.dart';
 
@@ -77,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     postLoginRequest().then((value){
                       if(value.statusCode == 200){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => OverViewScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
                       }
                     });
                   },

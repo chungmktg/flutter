@@ -7,6 +7,8 @@ import 'overview_sum.dart';
 class OverViewScreen extends StatefulWidget {
   @override
   _OverViewScreenState createState() => _OverViewScreenState();
+
+  OverViewScreen();
 }
 
 class _OverViewScreenState extends State<OverViewScreen> {
