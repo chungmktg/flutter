@@ -4,8 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/User.dart';
 import 'package:flutter_app/presenter/login.dart';
-import 'package:flutter_app/widgets/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'home_page.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -74,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   textColor: Colors.white,
-                  color: Colors.blueGrey,
+                  color: Colors.deepOrange,
                   onPressed: () {
                     postLoginRequest().then((value) {
                       if (value.statusCode == 200) {

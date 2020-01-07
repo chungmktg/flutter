@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../strings.dart';
+import 'package:flutter_app/value/strings.dart';
 import 'overview_grid.dart';
 import 'overview_sum.dart';
 

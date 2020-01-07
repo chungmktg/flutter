@@ -18,7 +18,7 @@ class _DestinationViewState extends State<DestinationView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: widget.destination.color[100],
-      body: OverViewScreen()
+      body: widget.destination.widget
     );
   }
 }

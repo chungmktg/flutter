@@ -4,10 +4,10 @@ import 'dart:io';
 
 import 'package:flutter_app/models/User.dart';
 import 'package:flutter_app/models/UserProfile.dart';
+import 'package:flutter_app/value/const.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../const.dart';
 
 Future<http.Response> postLoginRequest() async {
   var url = SERVER_URL_AUTH_WORKER + '/api/login';

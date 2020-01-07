@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widgets/landing_screen.dart';
+import 'package:flutter_app/widgets/auth/landing_screen.dart';
 
 void main() => runApp(MyApp());
 

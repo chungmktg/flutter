@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/bottom.dart';
+import 'package:flutter_app/widgets/bottom_navigation/destinationView.dart';
 
-import 'bottom_navigation/destinationView.dart';
 
 class HomePage extends StatefulWidget {
   @override
