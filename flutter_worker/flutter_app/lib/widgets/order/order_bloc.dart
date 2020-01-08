@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:flutter_app/models/BaseResponse.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:bloc/bloc.dart';
@@ -21,10 +20,13 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   OrderState get initialState => OrderUninitialized();
 
   @override
-  Stream<OrderState> transform(Stream<OrderEvent> events, Stream<OrderState> Function(OrderEvent event) next) {
+  Stream<OrderState> transform(
+    Stream<OrderEvent> events,
+    Stream<OrderState> Function(OrderEvent event) next) {
     // TODO: implement transform
     return super.transform(
-      (events as Observable<OrderEvent>).debounceTime(Duration(microseconds: 500),)
+      (events as Observable<OrderEvent>).debounceTime(
+        Duration(microseconds: 500),)
       , next);
   }
 
@@ -56,7 +58,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
   Future<List<OrderItem>> _fetchOrders(int page, int limit) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String token = await prefs.getString(TOKEN) ?? "";
+    String token = prefs.getString(TOKEN) ?? "";
 
     final response = await httpClient.get(
         BASE_URL_DATA_WORKER + '/api/orders?limit=$limit&page=$page',
@@ -68,9 +70,12 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         log('order, ${response.body}');
 
     if (response.statusCode == 200){
-      final data = (response.body);
-
-      return [];
+      final data = json.decode(response.body);
+      var dataItems = data['data']['items'] as List;
+      return dataItems.map((it){
+          return OrderItem.fromMap(it);
+      }
+      ).toList();
     } else {
       throw Exception('error fetching posts');
     }

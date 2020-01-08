@@ -1,12 +1,17 @@
 import 'dart:convert';
 
+import 'package:flutter_app/models/OrderItem.dart';
+import 'package:http/http.dart';
+
 class BaseResponse<T> {
-  Data<T> data;
+  Data data;
   int status;
   BaseResponse(
     this.data,
     this.status,
   );
+ 
+  BaseResponse.fromJson(Map<String, dynamic> json) : data = json['data'], status = json['status'];
 
   BaseResponse copyWith({
     Data<T> data,
@@ -33,13 +38,18 @@ class BaseResponse<T> {
 
   @override
   int get hashCode => data.hashCode ^ status.hashCode;
-}class Data<T> {
-   List<T> items;
+}
+
+
+class Data<T> {
+   List<OrderItem> items;
    int total;
   Data(
     this.items,
     this.total,
   );
+
+  Data.fromJson(Map<String, dynamic> json) : items  = json['items'], total = json['total'];
 
   Data copyWith({
     List<T> items,

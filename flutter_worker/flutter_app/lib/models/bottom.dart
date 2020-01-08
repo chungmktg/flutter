@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widgets/demo_paging_post/PostHomePage.dart';
 import 'package:flutter_app/widgets/order/OrdersScreen.dart';
 import 'package:flutter_app/widgets/over_view/overview_worker_screen.dart';
 
@@ -13,5 +14,7 @@ class Destination {
 
 List<Destination> allDestinations = [
   Destination( widget: new OverViewScreen(), title: 'Overview', icon: Icons.home, color: Colors.teal),
-  Destination( widget: new OrderScreen(), title: 'Orders', icon: Icons.cake ,color: Colors.orange),
+  Destination( widget: new OrderScreen(), title: 'Orders', icon: Icons.cake ,color: Colors.teal),
+  Destination( widget: new PostHomePage(), title: 'Post', icon: Icons.card_giftcard ,color: Colors.teal),
+
 ];

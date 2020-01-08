@@ -9,13 +9,9 @@ class OrderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
           child: ListTile(
-        leading: Text(
-          order.id.toString(),
-          style: TextStyle(fontSize: 10.0),
-        ),
-        title: Text('${order.order_type}'),
+        title: Text(order.id.toString()),
         isThreeLine: true,
-        subtitle: Text(order.order_status),
+        subtitle: Text('order status'),
         dense: true,
       ),
     );

@@ -85,7 +85,7 @@ class OrderItem extends Equatable {
   }
 
   static OrderItem fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
+    // if (map == null) return null;
   
     return OrderItem(
       id: map['id']?.toInt(),
@@ -106,7 +106,7 @@ class OrderItem extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  static OrderItem fromJson(String source) => fromMap(json.decode(source));
+  factory OrderItem.fromJson(String source) => fromMap(json.decode(source));
 
   @override
   String toString() {

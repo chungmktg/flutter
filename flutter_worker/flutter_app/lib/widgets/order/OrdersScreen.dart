@@ -62,7 +62,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 }
                 return ListView.builder(
                   itemBuilder: (BuildContext context, int index){
-                    return index >= state.orderItems.length ? BottomLoader() : OrderWidget(order: state.orderItems[index]);
+                    return index >= state.orderItems.length ?  BottomLoader() : OrderWidget(order: state.orderItems[index]);
                   },
                   itemCount: state.hasReachMax ? state.orderItems.length : state.orderItems.length + 1,
                   controller: _scrollController,
